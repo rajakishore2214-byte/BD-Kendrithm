@@ -37,6 +37,10 @@ def clean_phone(value):
     digits = re.sub(r'\D', '', value)
     if not 7 <= len(digits) <= 15:
         raise ValueError('Phone must contain 7 to 15 digits, including country code where available')
+    if len(digits) == 10 and not value.startswith('+'):
+        return '+91' + digits
+    if len(digits) == 12 and digits.startswith('91'):
+        return '+' + digits
     return ('+' if value.startswith('+') else '') + digits
 
 
@@ -172,5 +176,6 @@ def preview_import(data):
         except (ValueError, TypeError) as exc:
             errors.append(f'Row {index}: {exc}')
     return valid, errors
+
 
 

@@ -12,6 +12,16 @@ def lead(**kwargs):
 
 
 class LeadTests(unittest.TestCase):
+    def test_local_and_international_numbers_share_suppression(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'leads.db'
+            raw = lead(status='Do not contact')
+            raw['phone'] = '9000000001'
+            save_lead(raw,path)
+            other = lead(call_permission='Cleared for business call')
+            other['business_name'] = 'Same contact elsewhere'
+            self.assertEqual(save_lead(other,path)['status'],'Do not contact')
+
     def test_unknown_is_not_no_website(self):
         row = lead()
         row.pop('website_status')
@@ -88,3 +98,4 @@ class LeadTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

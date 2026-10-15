@@ -1,4 +1,4 @@
-# Kendrithm Business Discovery Network
+# Kendrithm Personal BD Agent
 
 A local Streamlit workspace for business research, manual calling and evidence-based local visibility plans.
 
@@ -69,3 +69,34 @@ Maps/local-pack results and organic website rankings are separate. Measure locat
 
 The WhatsApp outreach tab accepts CSV files using its downloadable template. It filters verified website absence and verified absent or inactive social presence, requires evidence checked within 30 days, and defaults to a 90-day inactivity window. It does not crawl or independently verify social media. Saved opt-outs are excluded. The HTML export contains Business Name, Phone Number and Open WhatsApp buttons with URL-encoded personalized draft messages. The original message and a shorter permission-first option are editable. Opening a link does not send the message or verify WhatsApp membership.
 
+
+## Personal BD agent
+
+The **My BD agent** desk starts a separate background worker for a bounded mission. Each mission records its objective, selected markets/niches/services, progress events, candidate sources, saved-lead briefs and review decisions in the ignored `data/agent.sqlite3` database. Runs continue when switching tabs while the computer remains on. This is an on-demand worker, not a scheduled or always-on service.
+
+A mission executes at most four public-web search queries, five results per query, reviews at most five saved leads and makes at most three local-model calls for those briefs (or two candidate suggestions when no saved leads exist). Search results remain unverified candidates and never establish website absence, inactive social media or contact ownership. A workflow priority score is not a conversion prediction. Approvals do not send messages. Failed model calls retain clearly labelled template drafts.
+
+Local AI uses Ollama at `http://127.0.0.1:11434/api/chat`, non-streaming structured output and a 2,048-token context setting. The selected lightweight model is Qwen3 1.7B. Model-generated recommendations remain suggestions requiring evidence review. Web content cannot issue tool actions; the worker chooses from fixed research tools. Without a connected model, the worker uses rules and templates and labels this explicitly.
+
+Business and owner handoff contacts are private local settings in `data/agent_contacts.json`; real numbers are not bundled with the repository. Manual call preparation uses a professional opening and discovery questions. When a client agrees to a Tamil callback, the operator records their needs and agreed time; the worker prepares an owner WhatsApp draft and saves callback notes. No outbound calling, automatic WhatsApp delivery, voice agent, call recording or paid telephony service is connected.
+
+
+### Free local model setup
+
+Install Ollama from its official Windows distribution, then download the model:
+
+```powershell
+ollama pull qwen3:1.7b
+```
+
+Run Ollama with local-only settings if its background app is not already running:
+
+```powershell
+$env:OLLAMA_NO_CLOUD = '1'
+$env:OLLAMA_HOST = '127.0.0.1:11434'
+ollama serve
+```
+
+Enter `qwen3:1.7b` in the agent's model settings and enable local suggestions. This uses local inference rather than a paid API. Runtime/model downloads, storage and computer resources are still required. The worker rejects cloud-labelled model names. Installation binaries, weights, local model settings, contacts and research records are excluded from Git.
+
+The supplied desktop setup was checked with approximately 8 GB RAM and a 4 GB discrete Radeon GPU. The live structured-output adapter test completed in about 10 seconds; performance and output quality vary. Human review remains necessary, particularly for unverified directory search results.

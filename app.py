@@ -5,8 +5,8 @@ from src.leads import AREAS, NICHES, STATUSES, WEBSITE, FIELDS, list_leads, save
 from src.apollo import search_people
 from src.strategy import CHECKS, action_plan, niche_offer
 
-st.set_page_config(page_title='Kendrithm | Business Discovery Network', page_icon='◎', layout='wide')
-st.title('Kendrithm · Business Discovery Network')
+st.set_page_config(page_title='Kendrithm | Personal BD Agent', page_icon='◎', layout='wide')
+st.title('Kendrithm · Personal BD Agent')
 st.caption('Find a business. Verify the opportunity. Reach the right person.')
 with st.sidebar:
     st.header('Your market')
@@ -16,7 +16,7 @@ with st.sidebar:
     st.divider()
     st.caption('Local lead records persist on this computer. API keys and lead data are excluded from Git.')
 
-research, pipeline, b2b, strategy, website, setup, outreach_html = st.tabs(['Local discovery', 'Call pipeline', 'Apollo · B2B', 'GBP & search strategy', 'Website research', 'Connections', 'WhatsApp outreach'])
+agent_desk, research, pipeline, b2b, strategy, website, setup, outreach_html = st.tabs(['My BD agent', 'Local discovery', 'Call pipeline', 'Apollo · B2B', 'GBP & search strategy', 'Website research', 'Connections', 'WhatsApp outreach'])
 
 with research:
     st.subheader('Find businesses with no listed website')
@@ -184,4 +184,10 @@ with setup:
 with outreach_html:
     from src.outreach import render_outreach_tab
     render_outreach_tab()
+
+
+with agent_desk:
+    from src.agent_ui import render_agent_desk
+    render_agent_desk()
+
 
