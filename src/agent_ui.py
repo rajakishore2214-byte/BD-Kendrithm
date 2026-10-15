@@ -18,13 +18,15 @@ def render_agent_desk():
     b.metric('AI brain', 'Configured locally' if model_config.get('verified') or st.session_state.get('local_model_names') else model_config.get('status','Needs connection'))
     c.metric('Sending', 'Not connected')
     st.caption('Current authority: research and prepare drafts. Approval records your decision; it does not place a call or send a message. Background runs continue if you switch tabs, while this computer stays on.')
+    st.session_state.setdefault('agent_objective', 'Find interior designers and material dealers in Chennai and Cheyyar, verify their business fit, and prepare useful offers for website development, lead generation and performance marketing.')
+    st.session_state.setdefault('agent_services', SERVICES)
     st.session_state.setdefault('agent_target_areas', AREAS)
     st.session_state.setdefault('agent_target_niches', list(NICHES)[:5])
     with st.form('agent_mission'):
-        objective = st.text_area('What should your BD agent achieve?', 'Find interior designers and material dealers in Chennai and Cheyyar, verify their business fit, and prepare useful offers for website development, lead generation and performance marketing.', key='agent_objective')
+        objective = st.text_area('What should your BD agent achieve?', key='agent_objective')
         areas = st.multiselect('Agent target areas', AREAS, key='agent_target_areas')
         niches = st.multiselect('Agent target niches', list(NICHES), key='agent_target_niches')
-        services = st.multiselect('Services to sell', SERVICES, default=SERVICES, key='agent_services')
+        services = st.multiselect('Services to sell', SERVICES, key='agent_services')
         with st.expander('Research and model settings'):
             web_search = st.checkbox('Find new candidates through public-web search', value=True, key='agent_web_search')
             inspect_sources = st.checkbox('Inspect up to two candidate source pages',value=True, key='agent_inspect_sources')
@@ -140,6 +142,7 @@ def render_mission_progress():
                     st.error(str(exc))
     if result:
         st.download_button('Download mission report',json.dumps(mission,indent=2,ensure_ascii=False),'agent_mission.json','application/json')
+
 
 
 

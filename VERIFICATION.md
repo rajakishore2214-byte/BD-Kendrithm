@@ -46,3 +46,9 @@ An earlier full run encountered a model connection failure while the service was
 38 automated tests passed, including navigation and market selection through the command path, bounded mission starts with selected settings, cancellation targeting only active work, Tamil command parsing, rejection of external/destructive commands, and Streamlit integration for typed-command navigation. The browser renders the microphone, language, stop and spoken-feedback controls. The command processor uses native Streamlit component triggers and tab state; it does not execute dictated code.
 
 An actual microphone/speech-recognition round trip requires the user's microphone permission and a supported browser speech service; it has not been claimed as verified by the automated tests. The typed-command fallback exercises the same allowlisted command dispatcher. No voice call, message or recording was sent during verification.
+
+## Hands-free voice update
+
+40 Python/application tests and seven JavaScript controller tests pass. Simulated browser tests cover explicit first activation, continuous recognition, automatic restart after silence, wake-word gating, spoken-reply completion, command pause/resume, microphone shutdown, permission-error retry limits and retaining the microphone controller across view replacements. Dictated mission goals and service selection are supported by the same allowlisted dispatcher.
+
+The microphone stays off until the operator accepts the in-app continuous-audio notice and activates hands-free once. A page reload or explicit microphone-off operation requires reactivation. No real microphone audio was captured in automated verification; live continuous recognition still depends on the user's microphone and browser speech backend. Background speech recognition may process audio online. Unprompted continuous capture was not enabled.

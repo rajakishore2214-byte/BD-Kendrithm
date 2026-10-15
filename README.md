@@ -101,10 +101,21 @@ Enter `qwen3:1.7b` in the agent's model settings and enable local suggestions. T
 
 The supplied desktop setup was checked with approximately 8 GB RAM and a 4 GB discrete Radeon GPU. The live structured-output adapter test completed in about 10 seconds; performance and output quality vary. Human review remains necessary, particularly for unverified directory search results.
 
-## Operate by voice
+## Operate hands-free by voice
 
-Use the expanded **Operate Kendrithm by voice** control at the top. Press **Listen for a command**, grant microphone permission and speak one command. Stop listening ends microphone capture. Optional spoken feedback uses the browser's speech synthesis. English (India) and Tamil recognition settings are available; the command grammar supports English and selected Tamil phrases, rather than unrestricted conversation.
+Review the continuous-audio notice, enable hands-free once and grant microphone permission. No Listen button is required between commands. The microphone controller survives app rerenders and ordinary silence; it automatically resumes after command feedback and spoken replies. A full page reload or microphone shutdown requires activation again. Browser permission and speech-service support cannot be bypassed.
 
-Examples: `show my leads`, `open WhatsApp outreach`, `select Chennai`, `select plywood stores`, `find plywood stores in Cheyyar`, `start research`, `mission status`, `cancel mission`, and `help`. Research uses the current mission settings and fixed worker limits. Voice cannot dial, send messages, delete records or approve outreach. Transcripts and feedback appear in the current session. The command is processed once per recognition event.
+By default, say `Kendrithm` before each command. Examples:
 
-Speech recognition uses the browser's Web Speech service, which may process audio online and may require Chrome or Edge. Browser/API availability does not guarantee a working speech backend in an embedded browser. Clear error messages and a typed-command fallback are provided. The local Qwen model and all existing model storage remain on D:. No new speech model download or paid speech API is configured.
+- Kendrithm, show my leads.
+- Kendrithm, select Chennai.
+- Kendrithm, select services website development and lead generation.
+- Kendrithm, set my mission to Find local plywood stores and prepare useful offers.
+- Kendrithm, start research.
+- Kendrithm, mission status.
+- Kendrithm, find plywood stores in Cheyyar.
+- Kendrithm, cancel mission.
+
+`Kendrithm, pause commands` keeps the microphone on for `Kendrithm, resume commands`. `Kendrithm, stop listening` turns it off completely; you cannot reactivate by voice while the microphone is off. The wake-word preference and spoken feedback can be changed in the voice panel. Audio is not captured until explicit activation; leaving the page turns capture off. Permission/service errors stop repeated reconnection attempts.
+
+Recognition uses the browser speech provider and may process audio online. Chrome or Edge may be required; availability of the browser API does not guarantee a working speech backend in an embedded browser. English and selected Tamil command phrases are supported. A typed fallback remains available. Commands cannot place calls, send messages, approve outreach or delete records. The local model and existing downloads remain on D:.

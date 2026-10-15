@@ -35,6 +35,17 @@ class VoiceTests(unittest.TestCase):
         execute_command(parse_command('cancel mission'),{},missions_fn=lambda:[{'id':'finished','status':'Needs review'},{'id':'running','status':'Running'}],cancel_fn=cancel)
         cancel.assert_called_once_with('running')
 
+    def test_wake_word_and_dictated_objective(self):
+        self.assertEqual(parse_command('Kendrithm, show my leads')['tab'],'Call pipeline')
+        command=parse_command('Set my mission to Find plywood stores and prepare professional call briefs')
+        state={}
+        execute_command(command,state)
+        self.assertEqual(state['agent_objective'],'Find plywood stores and prepare professional call briefs')
+
+    def test_spoken_service_selection(self):
+        state={}
+        execute_command(parse_command('select services website development and performance marketing'),state)
+        self.assertEqual(state['agent_services'],['Website development','Performance marketing'])
     def test_typed_voice_path_navigates_and_selects(self):
         from pathlib import Path
         from streamlit.testing.v1 import AppTest
@@ -48,4 +59,5 @@ class VoiceTests(unittest.TestCase):
         app.button(key='FormSubmitter:typed_voice_command-Run command').click().run()
         self.assertFalse(app.exception)
         self.assertEqual(app.session_state['main_navigation'],'Call pipeline')
+
 

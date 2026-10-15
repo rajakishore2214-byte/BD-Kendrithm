@@ -9,12 +9,21 @@ TABS = {'agent':'My BD agent','discovery':'Local discovery','leads':'Call pipeli
 
 
 def parse_command(text):
+    raw = re.sub(r'^(?:hey\s+)?(?:kendrithm|kendritham|kendra\s+rhythm)[\s,:-]*', '', str(text).strip(), flags=re.IGNORECASE)
+    objective = re.match(r'^(?:set|change) (?:my |the )?(?:mission|goal|objective)(?: objective)? (?:to|as)\s+(.+)$', raw, flags=re.IGNORECASE)
+    if objective and len(objective[1]) <= 500:
+        return {'action':'objective', 'text':objective[1].strip()}
     text = re.sub(r'[^\w\s\u0B80-\u0BFF]', ' ', str(text).casefold(), flags=re.UNICODE)
     text = ' '.join(text.split())
+    text = re.sub(r'^(?:hey\s+)?(?:kendrithm|kendritham|kendra\s+rhythm|கேந்திரிதம்|கேந்திரம்)\s*', '', text, flags=re.IGNORECASE)
     if not text or len(text)>500:
         return {'action':'help'}
     if any(phrase in text for phrase in ["don t", 'do not', 'never ', 'வேண்டாம்']):
         return {'action':'unsupported'}
+    if any(p in text for p in ['select service', 'set service', 'sell ', 'focus on service']):
+        choices = [name for words,name in [('website','Website development'),('lead generation','Lead generation'),('performance marketing','Performance marketing')] if words in text]
+        if choices:
+            return {'action':'services', 'services':choices}
     if re.search(r'\b(send|dial|delete|remove|call|message|publish|approve)\b',text) and not any(p in text for p in ['call pipeline','show my calls','show calls','show messages']):
         return {'action':'unsupported'}
     if text in ['help','voice help','what can i say','உதவி']:
@@ -43,6 +52,12 @@ def execute_command(command, state, enqueue_fn=None, launch_fn=None, missions_fn
     from src.agent import enqueue, launch, missions, cancel, SERVICES
     enqueue_fn,launch_fn,missions_fn,cancel_fn = enqueue_fn or enqueue,launch_fn or launch,missions_fn or missions,cancel_fn or cancel
     action = command['action']
+    if action=='objective':
+        state['agent_objective']=command['text']
+        return 'Mission objective updated. Say start research when ready.'
+    if action=='services':
+        state['agent_services']=command['services']
+        return 'Selected services: ' + ', '.join(command['services']) + '.'
     if action=='navigate':
         state['main_navigation']=command['tab']
         return 'Opened ' + command['tab'] + '.'
@@ -89,7 +104,7 @@ def render_voice_controls():
     import streamlit as st
     widget=_voice_component()
     with st.expander('🎙 Operate Kendrithm by voice',expanded=True):
-        st.caption('Push to talk. Your browser’s speech service may process audio online. Microphone permission is requested only when you press Listen. Recognition support varies by browser; Chrome or Edge may be needed. Commands support English and a small set of Tamil phrases.')
+        st.caption('Enable hands-free once and allow the microphone. Listening then resumes automatically after commands, spoken replies and ordinary silence. Audio may be processed online by your browser speech provider. Keep this page open; browser support varies. Say Kendrithm before each command by default.')
         event=widget(data={'feedback':st.session_state.get('voice_feedback',''),'feedbackId':st.session_state.get('voice_feedback_id','')},key='voice_controls',on_command_change=lambda:None)
         payload=getattr(event,'command',None)
         if isinstance(payload,dict) and payload.get('id') and payload.get('id') != st.session_state.get('voice_processed'):
@@ -107,7 +122,7 @@ def render_voice_controls():
         if submit:
             _run_command(text)
             st.rerun()
-        st.caption('Examples: “select Chennai”, “select plywood stores”, “start research”, “mission status”, “show my leads”, “open WhatsApp outreach”. Say “cancel mission” to stop research; use Stop listening to stop the microphone.')
+        st.caption('Say “Kendrithm, show my leads”, “Kendrithm, find plywood stores in Cheyyar”, or “Kendrithm, mission status”. “Kendrithm, pause commands” keeps the microphone on for “Kendrithm, resume commands”. “Kendrithm, stop listening” turns the microphone off; reactivation then requires one activation. No button is needed between ordinary commands.')
 
 
 def _run_command(text):
