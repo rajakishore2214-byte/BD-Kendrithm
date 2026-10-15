@@ -8,15 +8,17 @@ from src.strategy import CHECKS, action_plan, niche_offer
 st.set_page_config(page_title='Kendrithm | Personal BD Agent', page_icon='◎', layout='wide')
 st.title('Kendrithm · Personal BD Agent')
 st.caption('Find a business. Verify the opportunity. Reach the right person.')
+from src.voice import render_voice_controls
+render_voice_controls()
 with st.sidebar:
     st.header('Your market')
-    area = st.selectbox('Research area', AREAS)
-    niche = st.selectbox('Business niche', list(NICHES))
+    area = st.selectbox('Research area', AREAS, key='research_area')
+    niche = st.selectbox('Business niche', list(NICHES), key='research_niche')
     st.caption('Start with interiors and material dealers; expand after measuring call-to-meeting results.')
     st.divider()
     st.caption('Local lead records persist on this computer. API keys and lead data are excluded from Git.')
 
-agent_desk, research, pipeline, b2b, strategy, website, setup, outreach_html = st.tabs(['My BD agent', 'Local discovery', 'Call pipeline', 'Apollo · B2B', 'GBP & search strategy', 'Website research', 'Connections', 'WhatsApp outreach'])
+agent_desk, research, pipeline, b2b, strategy, website, setup, outreach_html = st.tabs(['My BD agent', 'Local discovery', 'Call pipeline', 'Apollo · B2B', 'GBP & search strategy', 'Website research', 'Connections', 'WhatsApp outreach'], key='main_navigation', on_change='rerun')
 
 with research:
     st.subheader('Find businesses with no listed website')
@@ -189,5 +191,6 @@ with outreach_html:
 with agent_desk:
     from src.agent_ui import render_agent_desk
     render_agent_desk()
+
 
 

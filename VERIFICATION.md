@@ -40,3 +40,9 @@ Ollama 0.40.4 was installed from the digitally signed official Ollama Inc. insta
 The complete independent worker was then exercised with two public-web queries, two bounded source-page inspections and local-model suggestions. The latest successful run saved eight web candidates and two model-generated research suggestions. It had no eligible saved business records and produced no qualified-lead briefs. Directory sources remain unverified and model suggestions require human review. No outbound call, WhatsApp message, automatic owner alert or external AI API call was made.
 
 An earlier full run encountered a model connection failure while the service was being separated from its installer. That failed model attempt is retained in mission history; the later successful run is the verified result. Private contacts and real mission data remain outside version control.
+
+## Voice-operation update
+
+38 automated tests passed, including navigation and market selection through the command path, bounded mission starts with selected settings, cancellation targeting only active work, Tamil command parsing, rejection of external/destructive commands, and Streamlit integration for typed-command navigation. The browser renders the microphone, language, stop and spoken-feedback controls. The command processor uses native Streamlit component triggers and tab state; it does not execute dictated code.
+
+An actual microphone/speech-recognition round trip requires the user's microphone permission and a supported browser speech service; it has not been claimed as verified by the automated tests. The typed-command fallback exercises the same allowlisted command dispatcher. No voice call, message or recording was sent during verification.

@@ -100,3 +100,11 @@ ollama serve
 Enter `qwen3:1.7b` in the agent's model settings and enable local suggestions. This uses local inference rather than a paid API. Runtime/model downloads, storage and computer resources are still required. The worker rejects cloud-labelled model names. Installation binaries, weights, local model settings, contacts and research records are excluded from Git.
 
 The supplied desktop setup was checked with approximately 8 GB RAM and a 4 GB discrete Radeon GPU. The live structured-output adapter test completed in about 10 seconds; performance and output quality vary. Human review remains necessary, particularly for unverified directory search results.
+
+## Operate by voice
+
+Use the expanded **Operate Kendrithm by voice** control at the top. Press **Listen for a command**, grant microphone permission and speak one command. Stop listening ends microphone capture. Optional spoken feedback uses the browser's speech synthesis. English (India) and Tamil recognition settings are available; the command grammar supports English and selected Tamil phrases, rather than unrestricted conversation.
+
+Examples: `show my leads`, `open WhatsApp outreach`, `select Chennai`, `select plywood stores`, `find plywood stores in Cheyyar`, `start research`, `mission status`, `cancel mission`, and `help`. Research uses the current mission settings and fixed worker limits. Voice cannot dial, send messages, delete records or approve outreach. Transcripts and feedback appear in the current session. The command is processed once per recognition event.
+
+Speech recognition uses the browser's Web Speech service, which may process audio online and may require Chrome or Edge. Browser/API availability does not guarantee a working speech backend in an embedded browser. Clear error messages and a typed-command fallback are provided. The local Qwen model and all existing model storage remain on D:. No new speech model download or paid speech API is configured.

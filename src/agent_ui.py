@@ -18,18 +18,20 @@ def render_agent_desk():
     b.metric('AI brain', 'Configured locally' if model_config.get('verified') or st.session_state.get('local_model_names') else model_config.get('status','Needs connection'))
     c.metric('Sending', 'Not connected')
     st.caption('Current authority: research and prepare drafts. Approval records your decision; it does not place a call or send a message. Background runs continue if you switch tabs, while this computer stays on.')
+    st.session_state.setdefault('agent_target_areas', AREAS)
+    st.session_state.setdefault('agent_target_niches', list(NICHES)[:5])
     with st.form('agent_mission'):
-        objective = st.text_area('What should your BD agent achieve?', 'Find interior designers and material dealers in Chennai and Cheyyar, verify their business fit, and prepare useful offers for website development, lead generation and performance marketing.')
-        areas = st.multiselect('Agent target areas', AREAS, default=AREAS)
-        niches = st.multiselect('Agent target niches', list(NICHES), default=list(NICHES)[:5])
-        services = st.multiselect('Services to sell', SERVICES, default=SERVICES)
+        objective = st.text_area('What should your BD agent achieve?', 'Find interior designers and material dealers in Chennai and Cheyyar, verify their business fit, and prepare useful offers for website development, lead generation and performance marketing.', key='agent_objective')
+        areas = st.multiselect('Agent target areas', AREAS, key='agent_target_areas')
+        niches = st.multiselect('Agent target niches', list(NICHES), key='agent_target_niches')
+        services = st.multiselect('Services to sell', SERVICES, default=SERVICES, key='agent_services')
         with st.expander('Research and model settings'):
-            web_search = st.checkbox('Find new candidates through public-web search', value=True)
-            inspect_sources = st.checkbox('Inspect up to two candidate source pages',value=True)
-            budget = st.slider('Maximum search queries this run', 1, 4, 2)
+            web_search = st.checkbox('Find new candidates through public-web search', value=True, key='agent_web_search')
+            inspect_sources = st.checkbox('Inspect up to two candidate source pages',value=True, key='agent_inspect_sources')
+            budget = st.slider('Maximum search queries this run', 1, 4, 2, key='agent_query_budget')
             st.caption('Up to five search results per query. Search results are candidates, not verified businesses without websites. Each run drafts for at most five saved businesses.')
-            use_model = st.checkbox('Use my local Ollama model to write personalized suggestions', value=bool(model_config.get('verified')))
-            model = st.text_input('Exact installed Ollama model name', value=model_config.get('model',''), placeholder='Enter the model installed on this computer')
+            use_model = st.checkbox('Use my local Ollama model to write personalized suggestions', value=bool(model_config.get('verified')), key='agent_use_model')
+            model = st.text_input('Exact installed Ollama model name', value=model_config.get('model',''), placeholder='Enter the model installed on this computer', key='agent_model_name')
             st.caption('Local inference uses 127.0.0.1:11434. Without a connected model, the worker uses explicit rules and templates; no AI reasoning is claimed. The objective guides draft context; selected markets, services and query budgets control tool execution.')
         run = st.form_submit_button('Start agent mission', type='primary')
     if run:
@@ -138,6 +140,7 @@ def render_mission_progress():
                     st.error(str(exc))
     if result:
         st.download_button('Download mission report',json.dumps(mission,indent=2,ensure_ascii=False),'agent_mission.json','application/json')
+
 
 
 
