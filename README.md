@@ -64,3 +64,8 @@ See VERIFICATION.md for the actual validation scope and remaining connection req
 - [Apollo People API Search](https://docs.apollo.io/reference/people-api-search)
 
 Maps/local-pack results and organic website rankings are separate. Measure location and query consistently, alongside qualified calls, enquiries and booked meetings. No top-position promise is made.
+
+## WhatsApp outreach HTML
+
+The WhatsApp outreach tab accepts CSV files using its downloadable template. It filters verified website absence and verified absent or inactive social presence, requires evidence checked within 30 days, and defaults to a 90-day inactivity window. It does not crawl or independently verify social media. Saved opt-outs are excluded. The HTML export contains Business Name, Phone Number and Open WhatsApp buttons with URL-encoded personalized draft messages. The original message and a shorter permission-first option are editable. Opening a link does not send the message or verify WhatsApp membership.
+

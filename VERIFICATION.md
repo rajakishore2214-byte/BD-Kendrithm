@@ -19,3 +19,8 @@ The existing virtual environment points at a missing Python installation. Valida
 - Call clearance is a user review state, not automated verification of calling permissions.
 - Ranking plans are based on user-entered evidence. Unknown fields stay verification tasks; no rank prediction or guarantee.
 - Local database has no multi-user access control; server binds to loopback.
+
+## Outreach HTML update
+
+24 automated tests passed, including HTML escaping, exact message URL-encoding round trip, India number normalization, absent/inactive filtering, stale/unknown/active exclusions and saved contact suppression. CSV upload is supported; Excel files must first be exported as CSV. No actual source file or live social verification was supplied for this update.
+
