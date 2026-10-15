@@ -1,60 +1,35 @@
-# The useful-first outreach approach
+# Outreach approach
 
-Lead with a small piece of work that helps a particular business make a decision.
-Avoid generic agency introductions and unverified claims about lost traffic or revenue.
-Research can be automated; deciding what to say and sending it remain manual.
+## Start with a verified business need
 
-## 1. Choose one business and verify one observation
+Work Chennai and Cheyyar separately. Begin with interior designers and material dealers: laminate, veneer, louvers and plywood. Verify the public business contact and whether a website is actually absent. An empty directory website field is only an initial signal.
 
-Check the actual website in a browser, including mobile. Confirm the company serves
-the target location and has a service you can help with. A missing HTML signal is
-a research prompt, not a reason to pitch. Record the page URL and review date.
+Keep the phone source and, separately, an explicitly published or business-confirmed WhatsApp source. Do not infer WhatsApp availability from a mobile number. Review eligibility under applicable calling rules before marking a record call-ready. Honour opt-outs immediately; the app retains suppression across reimports.
 
-## 2. Make a tiny, useful sample
+## Manual opening
 
-Pick one deliverable suited to their customer journey:
+“Hello, I’m calling from Kendrithm. Do you handle marketing or enquiries for the business? Is this a suitable time for a brief business call?”
 
-- Industrial supplier: a sample product page with specifications and a clear quote request.
-- Clinic: a draft appointment section that explains how to book; avoid patient or medical claims.
-- Training centre: a course enquiry section with dates, eligibility and a clear next step.
-- Restaurant: a mobile menu layout with a visible reservation action.
-- Professional service: a service page opening that states audience, scope and enquiry route.
+If appropriate: “I was looking into [business category] in [area]. I could not confirm a business website. Do you already have one?”
 
-Use verified information, label the sample as a proposal, and keep it under one page.
-Do not use invented statistics or publish a redesign of their brand without agreement.
+If the observation is accurate: “We help businesses present their work/products clearly and make enquiries easier. May I show you a short sample based on your business?”
 
-## 3. Ask permission to share the sample
+Do not claim a ranking problem without evidence. Ask permission before sending any WhatsApp material. Record the agreed channel, contact role, next action and callback time. An interested lead is not a completed sale.
 
-Use an appropriate business channel you have reviewed and are permitted to use.
-Personalize this skeleton manually:
+## Offer by niche
 
-> Subject: A small idea for [business]'s [specific customer action]
->
-> Hi [business/team],
-> I was looking at [specific public page] and noticed [browser-verified observation].
-> I put together a small [sample] showing how [specific action] could be clearer.
-> Would it be useful if I sent it over? No meeting needed.
->
-> [Your name], Kendrithm
-> [Your business contact details]
->
-> If this isn't relevant, let me know and I won't follow up.
+| Niche | First useful offer | Conversion to measure |
+|---|---|---|
+| Interior designers | Project portfolio + service pages + consultation enquiry | Qualified consultations |
+| Laminate / veneer / louver / plywood dealers | Brand/product catalogue + local visibility review | Quote and contractor enquiries |
+| Education | Clear course pages + admission enquiry path | Qualified admission enquiries |
+| Catering | Menus + capacity + event gallery | Tasting and quote requests |
+| Wedding gardens | Capacity + amenities + event gallery | Site visits and availability enquiries |
 
-Do not send placeholder text. Describe the observation neutrally. For example,
-“On mobile I needed to open two pages to find the quote form” only if you verified it.
+## Working cadence
 
-## 4. Respond to interest with one next step
+Review a small batch in each market, document sources, and call manually. Record no-answer, requested callbacks, interest and booked meetings. Follow up only on the agreed channel/time. Compare niche-level call-to-conversation and conversation-to-meeting rates before increasing volume. Do not use a number being public as proof that unrestricted outreach is permitted.
 
-Share the sample when invited. Explain the proposed change and ask which customer
-action matters most to them. Offer a small, clearly priced pilot with scope, timeline
-and an agreed success measure. Promise deliverables you control.
+## B2B network
 
-## 5. Keep a small manual record
-
-Record business, evidence URL/date, sample, channel, date sent, response and next
-agreed action in a private file. Stop on any opt-out. Avoid repeated unsolicited
-follow-ups; agree a follow-up date when the recipient expresses interest.
-Track relevant replies, samples requested and paid pilots before comparing approaches.
-Change one element at a time rather than assuming that a website score predicts sales.
-
-The app has no sending, follow-up scheduling, contact enrichment or message-generation integration.
+Designers connect to material dealers and contractors; dealers connect to purchasing and sales roles. In Apollo, start with owners/founders, then narrow to relevant sales, operations, admissions or venue roles. Company HQ filters may miss branches in the selected city. Verify current role and company fit before seeking contact enrichment. Search does not reveal telephone numbers or email addresses.
